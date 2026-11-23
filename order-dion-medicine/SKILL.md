@@ -7,15 +7,20 @@ description: Orders medicine for Dion, Nick's Dutch Shepherd dog, via huisdieren
 
 Fills out and submits the medication order form at huisdierenkliniek.nl for Dion (Nick's dog), using pre-set owner and pet details. Uses the Claude in Chrome MCP tools to automate the browser.
 
+**Run this from the user's own browser (Claude in Chrome).** The form uses invisible reCAPTCHA v3; a headless or cloud browser gets scored as a bot and the submit silently fails (no POST reaches the clinic). If Chrome tools aren't available, tell the user rather than retrying.
+
+The clinic prescribes at most 1 month of medication per order.
+
 ## Step 1: Ask which medicine(s) to order
 
-Before opening the browser, ask the user which medicine(s) they want to order. Present the three options:
+Before opening the browser, ask the user which medicine(s) they want to order. Present the four options:
 
 1. Carporal — 1x per day, 1 tablet
 2. Enurance 50mg — 2x per day, ½ tablet
 3. Gabapentine 300mg — 3x per day, 1 tablet
+4. Tralieve — 3x per day, 1 tablet (strength not yet recorded; ask the user for the mg if they want it on the order)
 
-They can select one, two, or all three. Wait for their answer before proceeding.
+They can select any combination, or add something else. Wait for their answer before proceeding.
 
 ## Step 2: Navigate to the form
 
@@ -43,7 +48,7 @@ Use `read_page` with `filter: "interactive"` to get the current ref IDs, then fi
 - Achternaam: `De Jong`
 - Voorletter(s): `N`
 - Straat en huisnummer: `Barestraat 38`
-- Postcode en woonplaats: `9725CP`
+- Postcode en woonplaats: `9725CP Groningen`
 - Telefoonnummer: `0655523013`
 - E-mailadres: `nickthejong@hotmail.com`
 
@@ -68,3 +73,7 @@ Wil je dit versturen?
 ```
 
 Only submit if the user explicitly confirms. If they say no, stop — do not submit.
+
+## Step 5: Verify submission
+
+After clicking "Verstuur", check that the page changed to a confirmation. If the form is still shown unchanged, the order was NOT sent — tell the user and suggest calling the clinic (050 - 526 32 55).
