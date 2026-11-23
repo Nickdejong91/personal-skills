@@ -18,7 +18,7 @@ Before opening the browser, ask the user which medicine(s) they want to order. P
 1. Carporal — 1x per day, 1 tablet
 2. Enurance 50mg — 2x per day, ½ tablet
 3. Gabapentine 300mg — 3x per day, 1 tablet
-4. Tralieve — 3x per day, 1 tablet (strength not yet recorded; ask the user for the mg if they want it on the order)
+4. Tralieve 80mg — 3x per day, 1 tablet
 
 They can select any combination, or add something else. Wait for their answer before proceeding.
 
